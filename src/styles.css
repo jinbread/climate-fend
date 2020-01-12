@@ -1,0 +1,144 @@
+body {
+  font-family: sans-serif;
+  background: black;
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#overlay {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: white;
+}
+
+#decrease-rate {
+  font-size: 4em;
+}
+
+#selected-species {
+  font-size: 2em;
+}
+
+.overlay-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  margin-left: 72px;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: column;
+}
+
+.related-species-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  float: left;
+  padding: 4px 12px 4px 12px;
+  margin-right: 8px;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.hello {
+  height: 7200px;
+  background-color: black;
+  color: white;
+}
+
+#scrollWrapper {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: white;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#degreeChange {
+  font-size: 10em;
+  font-weight: 400;
+  letter-spacing: -2px;
+  display: block;
+}
+
+#pixelChange {
+  font-size: 2em;
+  font-weight: 400;
+  display: block;
+  opacity: 0.5;
+}
+
+.link {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: white;
+  margin: 20px;
+  text-align: center;
+}
+
+button {
+  font-size: 1.2em;
+  border-radius: 40px;
+  padding: 4px 12px;
+  margin-right: 16px;
+  background: #0000cc;
+  border: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.4;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+  color: lightgray;
+}
+
