@@ -1,5 +1,8 @@
 import "./styles.css";
 
+
+// Start Three.js scripts
+
 var THREE = require("three");
 
 var scene = new THREE.Scene();
@@ -48,49 +51,64 @@ var animate = function() {
 animate();
 
 
-//
+// End Three.js Scripts
 
+// Start Scroll interaction scripts
+var degreeChange;
+var decreaseRate;
 
-var degreeChange = 0;
-var verticalHeight = 7200;
-var jaguarRate = 0;
+// Vertical scroll height. Currently set as 20000px. 
+// If you want to increase or decrease the height, change the number below
+var verticalHeight = 20000;
+
+// Selected Species and max decrease rate will be assigned based on user input(click)
+var selectedSpecies = "Species"
+var selectedSpeciesMaxDecreaseRate = 70;
+var relatedSpecies = [ {name: "Species One", maxDecRate: 40}, {name: "Species Two", maxDecRate: 100}, {name: "Species Three", maxDecRate: 80} ]
+const relatedSpeciesHTML = relatedSpecies.map(function(species){
+  return `<li><a href="#">${species.name}</a></li>`
+})
+
 
 window.addEventListener("scroll", function(e) {
-  degreeChange =
-    (window.pageYOffset / (verticalHeight - this.window.innerHeight)) * 2;
-  document.getElementById("degreeChange").innerHTML = degreeChange.toFixed(1);
-  document.getElementById("pixelChange").innerHTML = window.pageYOffset + "px";
-  jaguarRate =
-    (window.pageYOffset / (verticalHeight - this.window.innerHeight)) * 100;
-  this.document.getElementById("decrease-rate").innerHTML =
-    jaguarRate.toFixed(0) + "%";
-  this.document.getElementById("selected-species").innerHTML = "Bumblebee";
-});
+  degreeChange = (window.pageYOffset / (verticalHeight - this.window.innerHeight)) * 2;
 
-document.getElementById("app").innerHTML = `
-<div id="scrollWrapper">
-  <div id="degreeChange">0.0</div>
-  <div id="pixelChange">0px</div>
+  document.getElementById("degree-change").innerHTML = degreeChange.toFixed(1);
+  // Set for debugging. Will be deleted after testing. 
+  document.getElementById("pixel-change").innerHTML = this.window.pageYOffset + "px";
+  
+  decreaseRate = (window.pageYOffset / (verticalHeight - this.window.innerHeight)) * selectedSpeciesMaxDecreaseRate;
+  this.document.getElementById("selected-species").innerHTML = selectedSpecies;
+  this.document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
+  
+  
+});
+// End Scroll interaction scripts
+
+
+
+document.getElementById("scroll-area").innerHTML = `
+<div id="scroll-wrapper">
+  <div id="degree-change">0.0</div>
+  <div id="pixel-change">0px</div>
 </div>
-<div class="hello"></div>
+<div class="scroll-height" style="height: ${verticalHeight}px"></div>
 `;
 
-window.addEventListener("click", function(e) {
-  this.document.getElementById("decrease-rate").innerHTML =
-    jaguarRate.toFixed(0) + "%";
-  this.document.getElementById("selected-species").innerHTML = "Bumblebee";
-});
-
-document.getElementById("overlay").innerHTML = `
+document.getElementById("overlay-area").innerHTML = `
 <div class="overlay-wrapper">
   <h1 id="decrease-rate">0%</h1>
   <h2 id="selected-species">Bumblebee</h2>
   <h2 style="margin-bottom: 12px;">in the world have disappeared</h2>
   <h3 style="margin-bottom: 12px;">Related Species</h3>
   <ul class="related-species-list">
-    <li><a href="#">Lion</a></li>
-    <li>Puma</li>
-    <li>Jaguar</li>
+  ${relatedSpeciesHTML.toString()}
   </ul>
 </div>
 `;
+
+// this.document.getElementById("related-species-list").innerHTML = relatedSpecies.map(function(species){
+//   return "<li><a href=\"#\">" + species.name + "</a></li>"
+// })
+
+

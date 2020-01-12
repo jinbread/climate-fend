@@ -35366,6 +35366,7 @@ if (typeof __THREE_DEVTOOLS__ !== 'undefined') {
 
 require("./styles.css");
 
+// Start Three.js scripts
 var THREE = require("three");
 
 var scene = new THREE.Scene();
@@ -35402,25 +35403,44 @@ var animate = function animate() {
   renderer.render(scene, camera);
 };
 
-animate(); //
+animate(); // End Three.js Scripts
+// Start Scroll interaction scripts
 
-var degreeChange = 0;
-var verticalHeight = 7200;
-var jaguarRate = 0;
+var degreeChange;
+var decreaseRate; // Vertical scroll height. Currently set as 20000px. 
+// If you want to increase or decrease the height, change the number below
+
+var verticalHeight = 20000; // Selected Species and max decrease rate will be assigned based on user input(click)
+
+var selectedSpecies = "Species";
+var selectedSpeciesMaxDecreaseRate = 70;
+var relatedSpecies = [{
+  name: "Species One",
+  maxDecRate: 40
+}, {
+  name: "Species Two",
+  maxDecRate: 100
+}, {
+  name: "Species Three",
+  maxDecRate: 80
+}];
+var relatedSpeciesHTML = relatedSpecies.map(function (species) {
+  return "<li><a href=\"#\">".concat(species.name, "</a></li>");
+});
 window.addEventListener("scroll", function (e) {
   degreeChange = window.pageYOffset / (verticalHeight - this.window.innerHeight) * 2;
-  document.getElementById("degreeChange").innerHTML = degreeChange.toFixed(1);
-  document.getElementById("pixelChange").innerHTML = window.pageYOffset + "px";
-  jaguarRate = window.pageYOffset / (verticalHeight - this.window.innerHeight) * 100;
-  this.document.getElementById("decrease-rate").innerHTML = jaguarRate.toFixed(0) + "%";
-  this.document.getElementById("selected-species").innerHTML = "Bumblebee";
-});
-document.getElementById("app").innerHTML = "\n<div id=\"scrollWrapper\">\n  <div id=\"degreeChange\">0.0</div>\n  <div id=\"pixelChange\">0px</div>\n</div>\n<div class=\"hello\"></div>\n";
-window.addEventListener("click", function (e) {
-  this.document.getElementById("decrease-rate").innerHTML = jaguarRate.toFixed(0) + "%";
-  this.document.getElementById("selected-species").innerHTML = "Bumblebee";
-});
-document.getElementById("overlay").innerHTML = "\n<div class=\"overlay-wrapper\">\n  <h1 id=\"decrease-rate\">0%</h1>\n  <h2 id=\"selected-species\">Bumblebee</h2>\n  <h2 style=\"margin-bottom: 12px;\">in the world have disappeared</h2>\n  <h3 style=\"margin-bottom: 12px;\">Related Species</h3>\n  <ul class=\"related-species-list\">\n    <li><a href=\"#\">Lion</a></li>\n    <li>Puma</li>\n    <li>Jaguar</li>\n  </ul>\n</div>\n";
+  document.getElementById("degree-change").innerHTML = degreeChange.toFixed(1); // Set for debugging. Will be deleted after testing. 
+
+  document.getElementById("pixel-change").innerHTML = this.window.pageYOffset + "px";
+  decreaseRate = window.pageYOffset / (verticalHeight - this.window.innerHeight) * selectedSpeciesMaxDecreaseRate;
+  this.document.getElementById("selected-species").innerHTML = selectedSpecies;
+  this.document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
+}); // End Scroll interaction scripts
+
+document.getElementById("scroll-area").innerHTML = "\n<div id=\"scroll-wrapper\">\n  <div id=\"degree-change\">0.0</div>\n  <div id=\"pixel-change\">0px</div>\n</div>\n<div class=\"scroll-height\" style=\"height: ".concat(verticalHeight, "px\"></div>\n");
+document.getElementById("overlay-area").innerHTML = "\n<div class=\"overlay-wrapper\">\n  <h1 id=\"decrease-rate\">0%</h1>\n  <h2 id=\"selected-species\">Bumblebee</h2>\n  <h2 style=\"margin-bottom: 12px;\">in the world have disappeared</h2>\n  <h3 style=\"margin-bottom: 12px;\">Related Species</h3>\n  <ul class=\"related-species-list\">\n  ".concat(relatedSpeciesHTML.toString(), "\n  </ul>\n</div>\n"); // this.document.getElementById("related-species-list").innerHTML = relatedSpecies.map(function(species){
+//   return "<li><a href=\"#\">" + species.name + "</a></li>"
+// })
 },{"./styles.css":"src/styles.css","three":"node_modules/three/build/three.module.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -35449,7 +35469,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62667" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49746" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
