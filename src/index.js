@@ -123,8 +123,7 @@ animate();
 var degreeChange;
 var decreaseRate;
 
-// Vertical scroll height. Currently set as 20000px. 
-// If you want to increase or decrease the height, change the number below
+// Vertical scroll height. It is changealbe and currently set as 20000px.
 var verticalHeight = 20000;
 
 // Selected Species and max decrease rate will be assigned based on user input(click)
@@ -145,7 +144,7 @@ var relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray)
 
 
 
-// Start Scroll interaction scripts
+// Scroll Interaction
 window.addEventListener("scroll", function (e) {
   degreeChange = (window.pageYOffset / (verticalHeight - this.window.innerHeight)) * 2;
 
@@ -157,55 +156,20 @@ window.addEventListener("scroll", function (e) {
   this.document.getElementById("selected-species").innerHTML = selectedSpecies;
   this.document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
 });
-// End Scroll interaction scripts
 
+// Buttons Interaction Testing
+document.addEventListener('click', function (e) {  
+  if (e.target.id === "target-one") {
+    selectedArray = testArray[0]
+  }
 
+  if (e.target.id === "target-two") {
+    selectedArray = testArray[1]
+  }
 
-
-
-
-
-// Test Buttons 
-const tgtOne = document.getElementById("target-one")
-tgtOne.addEventListener('click', function (e) {
-
-  selectedArray = testArray[0]
-
-  selectedSpecies = selectedArray.name;
-  selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
-
-  decreaseRate = (window.pageYOffset / (verticalHeight - window.innerHeight)) * selectedSpeciesMaxDecreaseRate;
-  document.getElementById("selected-species").innerHTML = selectedSpecies;
-  document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
-
-  relatedSpeciesArray = selectedArray.relatedSpecies
-  relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray)
-  document.getElementById("related-species-list").innerHTML = `${relatedSpeciesHTML}`
-})
-
-const tgtTwo = document.getElementById("target-two")
-tgtTwo.addEventListener('click', function (e) {
-
-  selectedArray = testArray[1]
-  selectedSpecies = selectedArray.name;
-  selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
-
-
-  decreaseRate = (window.pageYOffset / (verticalHeight - window.innerHeight)) * selectedSpeciesMaxDecreaseRate;
-  document.getElementById("selected-species").innerHTML = selectedSpecies;
-  document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
-
-  relatedSpeciesArray = selectedArray.relatedSpecies
-  relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray)
-  document.getElementById("related-species-list").innerHTML = `${relatedSpeciesHTML}`
-})
-
-
-
-const tgtThree = document.getElementById("target-three")
-tgtThree.addEventListener('click', function (e) {
-
-  selectedArray = testArray[2]
+  if (e.target.id === "target-three") {
+    selectedArray = testArray[2]
+  }
 
   selectedSpecies = selectedArray.name;
   selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
@@ -219,11 +183,7 @@ tgtThree.addEventListener('click', function (e) {
   document.getElementById("related-species-list").innerHTML = `${relatedSpeciesHTML}`
 })
 
-
-
-
-
-
+// Insert HTML elements
 document.getElementById("scroll-area").innerHTML = `
 <div id="scroll-wrapper">
   <div id="degree-change">0.0</div>

@@ -35449,8 +35449,7 @@ var animate = function animate() {
 animate(); // End Three.js Scripts
 
 var degreeChange;
-var decreaseRate; // Vertical scroll height. Currently set as 20000px. 
-// If you want to increase or decrease the height, change the number below
+var decreaseRate; // Vertical scroll height. It is changealbe and currently set as 20000px.
 
 var verticalHeight = 20000; // Selected Species and max decrease rate will be assigned based on user input(click)
 
@@ -35466,7 +35465,7 @@ function displayRelatedSpecies(objectArray) {
   return mapObject.join('');
 }
 
-var relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray); // Start Scroll interaction scripts
+var relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray); // Scroll Interaction
 
 window.addEventListener("scroll", function (e) {
   degreeChange = window.pageYOffset / (verticalHeight - this.window.innerHeight) * 2;
@@ -35476,12 +35475,21 @@ window.addEventListener("scroll", function (e) {
   decreaseRate = window.pageYOffset / (verticalHeight - this.window.innerHeight) * selectedSpeciesMaxDecreaseRate;
   this.document.getElementById("selected-species").innerHTML = selectedSpecies;
   this.document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
-}); // End Scroll interaction scripts
-// Test Buttons 
+}); // Buttons Interaction Testing
 
-var tgtOne = document.getElementById("target-one");
-tgtOne.addEventListener('click', function (e) {
-  selectedArray = testArray[0];
+document.addEventListener('click', function (e) {
+  if (e.target.id === "target-one") {
+    selectedArray = testArray[0];
+  }
+
+  if (e.target.id === "target-two") {
+    selectedArray = testArray[1];
+  }
+
+  if (e.target.id === "target-three") {
+    selectedArray = testArray[2];
+  }
+
   selectedSpecies = selectedArray.name;
   selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
   decreaseRate = window.pageYOffset / (verticalHeight - window.innerHeight) * selectedSpeciesMaxDecreaseRate;
@@ -35490,31 +35498,8 @@ tgtOne.addEventListener('click', function (e) {
   relatedSpeciesArray = selectedArray.relatedSpecies;
   relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray);
   document.getElementById("related-species-list").innerHTML = "".concat(relatedSpeciesHTML);
-});
-var tgtTwo = document.getElementById("target-two");
-tgtTwo.addEventListener('click', function (e) {
-  selectedArray = testArray[1];
-  selectedSpecies = selectedArray.name;
-  selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
-  decreaseRate = window.pageYOffset / (verticalHeight - window.innerHeight) * selectedSpeciesMaxDecreaseRate;
-  document.getElementById("selected-species").innerHTML = selectedSpecies;
-  document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
-  relatedSpeciesArray = selectedArray.relatedSpecies;
-  relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray);
-  document.getElementById("related-species-list").innerHTML = "".concat(relatedSpeciesHTML);
-});
-var tgtThree = document.getElementById("target-three");
-tgtThree.addEventListener('click', function (e) {
-  selectedArray = testArray[2];
-  selectedSpecies = selectedArray.name;
-  selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
-  decreaseRate = window.pageYOffset / (verticalHeight - window.innerHeight) * selectedSpeciesMaxDecreaseRate;
-  document.getElementById("selected-species").innerHTML = selectedSpecies;
-  document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
-  relatedSpeciesArray = selectedArray.relatedSpecies;
-  relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray);
-  document.getElementById("related-species-list").innerHTML = "".concat(relatedSpeciesHTML);
-});
+}); // Insert HTML elements
+
 document.getElementById("scroll-area").innerHTML = "\n<div id=\"scroll-wrapper\">\n  <div id=\"degree-change\">0.0</div>\n  <div id=\"pixel-change\">0px</div>\n</div>\n<div class=\"scroll-height\" style=\"height: ".concat(verticalHeight, "px\"></div>\n");
 document.getElementById("overlay-area").innerHTML = "\n<div class=\"overlay-wrapper\">\n  <h1 id=\"decrease-rate\">0%</h1>\n  <h2 id=\"selected-species\">".concat(selectedSpecies, "</h2>\n  <h2 style=\"margin-bottom: 12px;\">in the world have disappeared</h2>\n  <h3 style=\"margin: 24px 0 16px 0;\">Related Species</h3>\n  <ul id=\"related-species-list\">\n  ").concat(relatedSpeciesHTML, "\n  </ul>\n</div>\n");
 },{"./styles.css":"src/styles.css","three":"node_modules/three/build/three.module.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -35545,7 +35530,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55655" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60021" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
