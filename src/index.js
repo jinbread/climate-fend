@@ -1,6 +1,25 @@
 import "./styles.css";
 
 
+var speciesArray = [
+  {
+    name: "Species One",
+    maxDecRate: 40,
+    relatedSpecies: [{name: "Species Ten"}, {name: "Species Eleven"}, {name: "Species Twelve"}]      
+  },
+  {
+    name: "Species Two",
+    maxDecRate: 100,
+    relatedSpecies: [{name: "Species Twenty"}, {name: "Species Twenty One"}, {name: "Species Twenty Two"}]      
+  },
+  {
+    name: "Species Three",
+    maxDecRate: 70,
+    relatedSpecies: [{name: "Species Thirty"}, {name: "Species Thirty One"}, {name: "Species Thirty Two"}]      
+  }
+]
+
+
 // Start Three.js scripts
 
 var THREE = require("three");
@@ -53,7 +72,6 @@ animate();
 
 // End Three.js Scripts
 
-// Start Scroll interaction scripts
 var degreeChange;
 var decreaseRate;
 
@@ -62,14 +80,24 @@ var decreaseRate;
 var verticalHeight = 20000;
 
 // Selected Species and max decrease rate will be assigned based on user input(click)
-var selectedSpecies = "Species"
-var selectedSpeciesMaxDecreaseRate = 70;
-var relatedSpecies = [ {name: "Species One", maxDecRate: 40}, {name: "Species Two", maxDecRate: 100}, {name: "Species Three", maxDecRate: 80} ]
-const relatedSpeciesHTML = relatedSpecies.map(function(species){
-  return `<li><a href="#">${species.name}</a></li>`
-})
+var selectedArray = speciesArray[0]
+var selectedSpecies = selectedArray.name
+var selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate
+var relatedSpeciesArray = selectedArray.relatedSpecies
 
 
+function displayRelatedSpecies(objectArray) {
+  var mapObject = objectArray.map(function(species){
+    return `<li><a href="#">${species.name}</a></li>`
+  })
+  return mapObject.join('')
+}
+
+var relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray)
+
+
+
+// Start Scroll interaction scripts
 window.addEventListener("scroll", function(e) {
   degreeChange = (window.pageYOffset / (verticalHeight - this.window.innerHeight)) * 2;
 
@@ -80,10 +108,70 @@ window.addEventListener("scroll", function(e) {
   decreaseRate = (window.pageYOffset / (verticalHeight - this.window.innerHeight)) * selectedSpeciesMaxDecreaseRate;
   this.document.getElementById("selected-species").innerHTML = selectedSpecies;
   this.document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
-  
-  
 });
 // End Scroll interaction scripts
+
+
+
+
+
+// Test Buttons 
+
+const tgtOne = document.getElementById("target-one")
+tgtOne.addEventListener('click', function(e) {
+
+  selectedArray = speciesArray[0]
+
+  selectedSpecies = selectedArray.name;
+  selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
+  
+  decreaseRate = (window.pageYOffset / (verticalHeight - window.innerHeight)) * selectedSpeciesMaxDecreaseRate;
+  document.getElementById("selected-species").innerHTML = selectedSpecies;
+  document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
+
+  relatedSpeciesArray = selectedArray.relatedSpecies
+  relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray)
+  document.getElementById("related-species-list").innerHTML = `${relatedSpeciesHTML}`
+})
+
+const tgtTwo = document.getElementById("target-two")
+tgtTwo.addEventListener('click', function(e) {
+
+  selectedArray = speciesArray[1]
+  selectedSpecies = selectedArray.name;
+  selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
+
+
+  decreaseRate = (window.pageYOffset / (verticalHeight - window.innerHeight)) * selectedSpeciesMaxDecreaseRate;
+  document.getElementById("selected-species").innerHTML = selectedSpecies;
+  document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
+
+  relatedSpeciesArray = selectedArray.relatedSpecies
+  relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray)
+  document.getElementById("related-species-list").innerHTML = `${relatedSpeciesHTML}`
+})
+
+
+
+const tgtThree = document.getElementById("target-three")
+tgtThree.addEventListener('click', function(e) {
+
+  selectedArray = speciesArray[2]
+
+  selectedSpecies = selectedArray.name;
+  selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
+
+  decreaseRate = (window.pageYOffset / (verticalHeight - window.innerHeight)) * selectedSpeciesMaxDecreaseRate;
+  document.getElementById("selected-species").innerHTML = selectedSpecies;
+  document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
+
+  relatedSpeciesArray = selectedArray.relatedSpecies
+  relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray)
+  document.getElementById("related-species-list").innerHTML = `${relatedSpeciesHTML}`
+})
+
+
+
 
 
 
@@ -98,17 +186,13 @@ document.getElementById("scroll-area").innerHTML = `
 document.getElementById("overlay-area").innerHTML = `
 <div class="overlay-wrapper">
   <h1 id="decrease-rate">0%</h1>
-  <h2 id="selected-species">Bumblebee</h2>
+  <h2 id="selected-species"></h2>
   <h2 style="margin-bottom: 12px;">in the world have disappeared</h2>
   <h3 style="margin-bottom: 12px;">Related Species</h3>
-  <ul class="related-species-list">
-  ${relatedSpeciesHTML.toString()}
+  <ul id="related-species-list">
+  ${relatedSpeciesHTML}
   </ul>
 </div>
 `;
-
-// this.document.getElementById("related-species-list").innerHTML = relatedSpecies.map(function(species){
-//   return "<li><a href=\"#\">" + species.name + "</a></li>"
-// })
 
 

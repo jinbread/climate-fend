@@ -46,7 +46,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
 }
 
-.related-species-list {
+#related-species-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -113,7 +113,7 @@ h3 {
 }
 
 button {
-  font-size: 1.2em;
+  font-size: 2em;
   border-radius: 40px;
   padding: 4px 12px;
   margin-right: 16px;

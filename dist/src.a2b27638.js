@@ -35366,7 +35366,38 @@ if (typeof __THREE_DEVTOOLS__ !== 'undefined') {
 
 require("./styles.css");
 
-// Start Three.js scripts
+var speciesArray = [{
+  name: "Species One",
+  maxDecRate: 40,
+  relatedSpecies: [{
+    name: "Species Ten"
+  }, {
+    name: "Species Eleven"
+  }, {
+    name: "Species Twelve"
+  }]
+}, {
+  name: "Species Two",
+  maxDecRate: 100,
+  relatedSpecies: [{
+    name: "Species Twenty"
+  }, {
+    name: "Species Twenty One"
+  }, {
+    name: "Species Twenty Two"
+  }]
+}, {
+  name: "Species Three",
+  maxDecRate: 70,
+  relatedSpecies: [{
+    name: "Species Thirty"
+  }, {
+    name: "Species Thirty One"
+  }, {
+    name: "Species Thirty Two"
+  }]
+}]; // Start Three.js scripts
+
 var THREE = require("three");
 
 var scene = new THREE.Scene();
@@ -35404,7 +35435,6 @@ var animate = function animate() {
 };
 
 animate(); // End Three.js Scripts
-// Start Scroll interaction scripts
 
 var degreeChange;
 var decreaseRate; // Vertical scroll height. Currently set as 20000px. 
@@ -35412,21 +35442,20 @@ var decreaseRate; // Vertical scroll height. Currently set as 20000px.
 
 var verticalHeight = 20000; // Selected Species and max decrease rate will be assigned based on user input(click)
 
-var selectedSpecies = "Species";
-var selectedSpeciesMaxDecreaseRate = 70;
-var relatedSpecies = [{
-  name: "Species One",
-  maxDecRate: 40
-}, {
-  name: "Species Two",
-  maxDecRate: 100
-}, {
-  name: "Species Three",
-  maxDecRate: 80
-}];
-var relatedSpeciesHTML = relatedSpecies.map(function (species) {
-  return "<li><a href=\"#\">".concat(species.name, "</a></li>");
-});
+var selectedArray = speciesArray[0];
+var selectedSpecies = selectedArray.name;
+var selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
+var relatedSpeciesArray = selectedArray.relatedSpecies;
+
+function displayRelatedSpecies(objectArray) {
+  var mapObject = objectArray.map(function (species) {
+    return "<li><a href=\"#\">".concat(species.name, "</a></li>");
+  });
+  return mapObject.join('');
+}
+
+var relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray); // Start Scroll interaction scripts
+
 window.addEventListener("scroll", function (e) {
   degreeChange = window.pageYOffset / (verticalHeight - this.window.innerHeight) * 2;
   document.getElementById("degree-change").innerHTML = degreeChange.toFixed(1); // Set for debugging. Will be deleted after testing. 
@@ -35436,11 +35465,46 @@ window.addEventListener("scroll", function (e) {
   this.document.getElementById("selected-species").innerHTML = selectedSpecies;
   this.document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
 }); // End Scroll interaction scripts
+// Test Buttons 
 
+var tgtOne = document.getElementById("target-one");
+tgtOne.addEventListener('click', function (e) {
+  selectedArray = speciesArray[0];
+  selectedSpecies = selectedArray.name;
+  selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
+  decreaseRate = window.pageYOffset / (verticalHeight - window.innerHeight) * selectedSpeciesMaxDecreaseRate;
+  document.getElementById("selected-species").innerHTML = selectedSpecies;
+  document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
+  relatedSpeciesArray = selectedArray.relatedSpecies;
+  relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray);
+  document.getElementById("related-species-list").innerHTML = "".concat(relatedSpeciesHTML);
+});
+var tgtTwo = document.getElementById("target-two");
+tgtTwo.addEventListener('click', function (e) {
+  selectedArray = speciesArray[1];
+  selectedSpecies = selectedArray.name;
+  selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
+  decreaseRate = window.pageYOffset / (verticalHeight - window.innerHeight) * selectedSpeciesMaxDecreaseRate;
+  document.getElementById("selected-species").innerHTML = selectedSpecies;
+  document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
+  relatedSpeciesArray = selectedArray.relatedSpecies;
+  relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray);
+  document.getElementById("related-species-list").innerHTML = "".concat(relatedSpeciesHTML);
+});
+var tgtThree = document.getElementById("target-three");
+tgtThree.addEventListener('click', function (e) {
+  selectedArray = speciesArray[2];
+  selectedSpecies = selectedArray.name;
+  selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
+  decreaseRate = window.pageYOffset / (verticalHeight - window.innerHeight) * selectedSpeciesMaxDecreaseRate;
+  document.getElementById("selected-species").innerHTML = selectedSpecies;
+  document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
+  relatedSpeciesArray = selectedArray.relatedSpecies;
+  relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray);
+  document.getElementById("related-species-list").innerHTML = "".concat(relatedSpeciesHTML);
+});
 document.getElementById("scroll-area").innerHTML = "\n<div id=\"scroll-wrapper\">\n  <div id=\"degree-change\">0.0</div>\n  <div id=\"pixel-change\">0px</div>\n</div>\n<div class=\"scroll-height\" style=\"height: ".concat(verticalHeight, "px\"></div>\n");
-document.getElementById("overlay-area").innerHTML = "\n<div class=\"overlay-wrapper\">\n  <h1 id=\"decrease-rate\">0%</h1>\n  <h2 id=\"selected-species\">Bumblebee</h2>\n  <h2 style=\"margin-bottom: 12px;\">in the world have disappeared</h2>\n  <h3 style=\"margin-bottom: 12px;\">Related Species</h3>\n  <ul class=\"related-species-list\">\n  ".concat(relatedSpeciesHTML.toString(), "\n  </ul>\n</div>\n"); // this.document.getElementById("related-species-list").innerHTML = relatedSpecies.map(function(species){
-//   return "<li><a href=\"#\">" + species.name + "</a></li>"
-// })
+document.getElementById("overlay-area").innerHTML = "\n<div class=\"overlay-wrapper\">\n  <h1 id=\"decrease-rate\">0%</h1>\n  <h2 id=\"selected-species\"></h2>\n  <h2 style=\"margin-bottom: 12px;\">in the world have disappeared</h2>\n  <h3 style=\"margin-bottom: 12px;\">Related Species</h3>\n  <ul id=\"related-species-list\">\n  ".concat(relatedSpeciesHTML, "\n  </ul>\n</div>\n");
 },{"./styles.css":"src/styles.css","three":"node_modules/three/build/three.module.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -35469,7 +35533,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49746" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59230" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
