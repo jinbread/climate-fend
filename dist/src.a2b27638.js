@@ -35366,7 +35366,7 @@ if (typeof __THREE_DEVTOOLS__ !== 'undefined') {
 
 require("./styles.css");
 
-var speciesArray = [{
+var testArray = [{
   name: "Species One",
   maxDecRate: 40,
   relatedSpecies: [{
@@ -35375,6 +35375,10 @@ var speciesArray = [{
     name: "Species Eleven"
   }, {
     name: "Species Twelve"
+  }, {
+    name: "Species Thirteen"
+  }, {
+    name: "Species Fourteen"
   }]
 }, {
   name: "Species Two",
@@ -35385,6 +35389,8 @@ var speciesArray = [{
     name: "Species Twenty One"
   }, {
     name: "Species Twenty Two"
+  }, {
+    name: "Species Twenty Three"
   }]
 }, {
   name: "Species Three",
@@ -35395,6 +35401,12 @@ var speciesArray = [{
     name: "Species Thirty One"
   }, {
     name: "Species Thirty Two"
+  }, {
+    name: "Species Thirty Three"
+  }, {
+    name: "Species Thirty Four"
+  }, {
+    name: "Species Thirty Five"
   }]
 }]; // Start Three.js scripts
 
@@ -35442,7 +35454,7 @@ var decreaseRate; // Vertical scroll height. Currently set as 20000px.
 
 var verticalHeight = 20000; // Selected Species and max decrease rate will be assigned based on user input(click)
 
-var selectedArray = speciesArray[0];
+var selectedArray = testArray[0];
 var selectedSpecies = selectedArray.name;
 var selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
 var relatedSpeciesArray = selectedArray.relatedSpecies;
@@ -35469,7 +35481,7 @@ window.addEventListener("scroll", function (e) {
 
 var tgtOne = document.getElementById("target-one");
 tgtOne.addEventListener('click', function (e) {
-  selectedArray = speciesArray[0];
+  selectedArray = testArray[0];
   selectedSpecies = selectedArray.name;
   selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
   decreaseRate = window.pageYOffset / (verticalHeight - window.innerHeight) * selectedSpeciesMaxDecreaseRate;
@@ -35481,7 +35493,7 @@ tgtOne.addEventListener('click', function (e) {
 });
 var tgtTwo = document.getElementById("target-two");
 tgtTwo.addEventListener('click', function (e) {
-  selectedArray = speciesArray[1];
+  selectedArray = testArray[1];
   selectedSpecies = selectedArray.name;
   selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
   decreaseRate = window.pageYOffset / (verticalHeight - window.innerHeight) * selectedSpeciesMaxDecreaseRate;
@@ -35493,7 +35505,7 @@ tgtTwo.addEventListener('click', function (e) {
 });
 var tgtThree = document.getElementById("target-three");
 tgtThree.addEventListener('click', function (e) {
-  selectedArray = speciesArray[2];
+  selectedArray = testArray[2];
   selectedSpecies = selectedArray.name;
   selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
   decreaseRate = window.pageYOffset / (verticalHeight - window.innerHeight) * selectedSpeciesMaxDecreaseRate;
@@ -35504,7 +35516,7 @@ tgtThree.addEventListener('click', function (e) {
   document.getElementById("related-species-list").innerHTML = "".concat(relatedSpeciesHTML);
 });
 document.getElementById("scroll-area").innerHTML = "\n<div id=\"scroll-wrapper\">\n  <div id=\"degree-change\">0.0</div>\n  <div id=\"pixel-change\">0px</div>\n</div>\n<div class=\"scroll-height\" style=\"height: ".concat(verticalHeight, "px\"></div>\n");
-document.getElementById("overlay-area").innerHTML = "\n<div class=\"overlay-wrapper\">\n  <h1 id=\"decrease-rate\">0%</h1>\n  <h2 id=\"selected-species\"></h2>\n  <h2 style=\"margin-bottom: 12px;\">in the world have disappeared</h2>\n  <h3 style=\"margin-bottom: 12px;\">Related Species</h3>\n  <ul id=\"related-species-list\">\n  ".concat(relatedSpeciesHTML, "\n  </ul>\n</div>\n");
+document.getElementById("overlay-area").innerHTML = "\n<div class=\"overlay-wrapper\">\n  <h1 id=\"decrease-rate\">0%</h1>\n  <h2 id=\"selected-species\">".concat(selectedSpecies, "</h2>\n  <h2 style=\"margin-bottom: 12px;\">in the world have disappeared</h2>\n  <h3 style=\"margin: 24px 0 16px 0;\">Related Species</h3>\n  <ul id=\"related-species-list\">\n  ").concat(relatedSpeciesHTML, "\n  </ul>\n</div>\n");
 },{"./styles.css":"src/styles.css","three":"node_modules/three/build/three.module.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -35533,7 +35545,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59230" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55655" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

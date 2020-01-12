@@ -29,16 +29,18 @@ body::-webkit-scrollbar {
 }
 
 #decrease-rate {
-  font-size: 4em;
+  font-size: 8em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-bottom: 8px;
 }
 
 #selected-species {
-  font-size: 2em;
+  font-size: 3em;
 }
 
 .overlay-wrapper {
   height: 100vh;
-  width: 100vw;
+  max-width: 450px;
   display: flex;
   margin-left: 72px;
   /* align-items: center; */
@@ -57,7 +59,9 @@ li {
   padding: 4px 12px 4px 12px;
   margin-right: 8px;
   border: 1px solid white;
-  border-radius: 20px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  opacity:.4
 }
 
 h1,
@@ -88,10 +92,11 @@ h3 {
 }
 
 #degree-change {
-  font-size: 10em;
-  font-weight: 400;
+  font-size: 14em;
+  font-weight: 800;
   letter-spacing: -2px;
   display: block;
+  opacity: .1;
 }
 
 #pixel-change {

@@ -1,21 +1,21 @@
 import "./styles.css";
 
 
-var speciesArray = [
+var testArray = [
   {
     name: "Species One",
     maxDecRate: 40,
-    relatedSpecies: [{name: "Species Ten"}, {name: "Species Eleven"}, {name: "Species Twelve"}]      
+    relatedSpecies: [{name: "Species Ten"}, {name: "Species Eleven"}, {name: "Species Twelve"}, {name: "Species Thirteen"}, {name: "Species Fourteen"}]      
   },
   {
     name: "Species Two",
     maxDecRate: 100,
-    relatedSpecies: [{name: "Species Twenty"}, {name: "Species Twenty One"}, {name: "Species Twenty Two"}]      
+    relatedSpecies: [{name: "Species Twenty"}, {name: "Species Twenty One"}, {name: "Species Twenty Two"}, {name: "Species Twenty Three"}]      
   },
   {
     name: "Species Three",
     maxDecRate: 70,
-    relatedSpecies: [{name: "Species Thirty"}, {name: "Species Thirty One"}, {name: "Species Thirty Two"}]      
+    relatedSpecies: [{name: "Species Thirty"}, {name: "Species Thirty One"}, {name: "Species Thirty Two"}, {name: "Species Thirty Three"}, {name: "Species Thirty Four"}, {name: "Species Thirty Five"}]      
   }
 ]
 
@@ -80,7 +80,7 @@ var decreaseRate;
 var verticalHeight = 20000;
 
 // Selected Species and max decrease rate will be assigned based on user input(click)
-var selectedArray = speciesArray[0]
+var selectedArray = testArray[0]
 var selectedSpecies = selectedArray.name
 var selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate
 var relatedSpeciesArray = selectedArray.relatedSpecies
@@ -115,12 +115,13 @@ window.addEventListener("scroll", function(e) {
 
 
 
-// Test Buttons 
 
+
+// Test Buttons 
 const tgtOne = document.getElementById("target-one")
 tgtOne.addEventListener('click', function(e) {
 
-  selectedArray = speciesArray[0]
+  selectedArray = testArray[0]
 
   selectedSpecies = selectedArray.name;
   selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
@@ -137,7 +138,7 @@ tgtOne.addEventListener('click', function(e) {
 const tgtTwo = document.getElementById("target-two")
 tgtTwo.addEventListener('click', function(e) {
 
-  selectedArray = speciesArray[1]
+  selectedArray = testArray[1]
   selectedSpecies = selectedArray.name;
   selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
 
@@ -156,7 +157,7 @@ tgtTwo.addEventListener('click', function(e) {
 const tgtThree = document.getElementById("target-three")
 tgtThree.addEventListener('click', function(e) {
 
-  selectedArray = speciesArray[2]
+  selectedArray = testArray[2]
 
   selectedSpecies = selectedArray.name;
   selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
@@ -186,9 +187,9 @@ document.getElementById("scroll-area").innerHTML = `
 document.getElementById("overlay-area").innerHTML = `
 <div class="overlay-wrapper">
   <h1 id="decrease-rate">0%</h1>
-  <h2 id="selected-species"></h2>
+  <h2 id="selected-species">${selectedSpecies}</h2>
   <h2 style="margin-bottom: 12px;">in the world have disappeared</h2>
-  <h3 style="margin-bottom: 12px;">Related Species</h3>
+  <h3 style="margin: 24px 0 16px 0;">Related Species</h3>
   <ul id="related-species-list">
   ${relatedSpeciesHTML}
   </ul>
