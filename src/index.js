@@ -1,21 +1,65 @@
 import "./styles.css";
 
 
-var testArray = [
-  {
+var testArray = [{
     name: "Species One",
     maxDecRate: 40,
-    relatedSpecies: [{name: "Species Ten"}, {name: "Species Eleven"}, {name: "Species Twelve"}, {name: "Species Thirteen"}, {name: "Species Fourteen"}]      
+    relatedSpecies: [{
+        name: "Species Ten"
+      },
+      {
+        name: "Species Eleven"
+      },
+      {
+        name: "Species Twelve"
+      },
+      {
+        name: "Species Thirteen"
+      },
+      {
+        name: "Species Fourteen"
+      }
+    ]
   },
   {
     name: "Species Two",
     maxDecRate: 100,
-    relatedSpecies: [{name: "Species Twenty"}, {name: "Species Twenty One"}, {name: "Species Twenty Two"}, {name: "Species Twenty Three"}]      
+    relatedSpecies: [{
+        name: "Species Twenty"
+      },
+      {
+        name: "Species Twenty One"
+      },
+      {
+        name: "Species Twenty Two"
+      },
+      {
+        name: "Species Twenty Three"
+      }
+    ]
   },
   {
     name: "Species Three",
     maxDecRate: 70,
-    relatedSpecies: [{name: "Species Thirty"}, {name: "Species Thirty One"}, {name: "Species Thirty Two"}, {name: "Species Thirty Three"}, {name: "Species Thirty Four"}, {name: "Species Thirty Five"}]      
+    relatedSpecies: [{
+        name: "Species Thirty"
+      },
+      {
+        name: "Species Thirty One"
+      },
+      {
+        name: "Species Thirty Two"
+      },
+      {
+        name: "Species Thirty Three"
+      },
+      {
+        name: "Species Thirty Four"
+      },
+      {
+        name: "Species Thirty Five"
+      }
+    ]
   }
 ]
 
@@ -32,14 +76,18 @@ var camera = new THREE.PerspectiveCamera(
   1000
 );
 
-var renderer = new THREE.WebGLRenderer({ alpha: true });
+var renderer = new THREE.WebGLRenderer({
+  alpha: true
+});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("threeScene").appendChild(renderer.domElement);
 
 renderer.setClearColor(0xffffff, 0);
 
 var geometry = new THREE.BoxGeometry(1, 1, 1);
-var material = new THREE.MeshBasicMaterial({ color: 0x0000cc });
+var material = new THREE.MeshBasicMaterial({
+  color: 0x0000cc
+});
 var cube = new THREE.Mesh(geometry, material);
 var cube2 = new THREE.Mesh(geometry, material);
 var cube3 = new THREE.Mesh(geometry, material);
@@ -54,7 +102,7 @@ cube.position.set(1.5, -2, 0);
 cube2.position.set(2, 2, 0);
 cube3.position.set(-2.5, 0, 0);
 
-var animate = function() {
+var animate = function () {
   requestAnimationFrame(animate);
 
   cube.rotation.x += 0.01;
@@ -87,7 +135,7 @@ var relatedSpeciesArray = selectedArray.relatedSpecies
 
 
 function displayRelatedSpecies(objectArray) {
-  var mapObject = objectArray.map(function(species){
+  var mapObject = objectArray.map(function (species) {
     return `<li><a href="#">${species.name}</a></li>`
   })
   return mapObject.join('')
@@ -98,13 +146,13 @@ var relatedSpeciesHTML = displayRelatedSpecies(relatedSpeciesArray)
 
 
 // Start Scroll interaction scripts
-window.addEventListener("scroll", function(e) {
+window.addEventListener("scroll", function (e) {
   degreeChange = (window.pageYOffset / (verticalHeight - this.window.innerHeight)) * 2;
 
   document.getElementById("degree-change").innerHTML = degreeChange.toFixed(1);
   // Set for debugging. Will be deleted after testing. 
   document.getElementById("pixel-change").innerHTML = this.window.pageYOffset + "px";
-  
+
   decreaseRate = (window.pageYOffset / (verticalHeight - this.window.innerHeight)) * selectedSpeciesMaxDecreaseRate;
   this.document.getElementById("selected-species").innerHTML = selectedSpecies;
   this.document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
@@ -119,13 +167,13 @@ window.addEventListener("scroll", function(e) {
 
 // Test Buttons 
 const tgtOne = document.getElementById("target-one")
-tgtOne.addEventListener('click', function(e) {
+tgtOne.addEventListener('click', function (e) {
 
   selectedArray = testArray[0]
 
   selectedSpecies = selectedArray.name;
   selectedSpeciesMaxDecreaseRate = selectedArray.maxDecRate;
-  
+
   decreaseRate = (window.pageYOffset / (verticalHeight - window.innerHeight)) * selectedSpeciesMaxDecreaseRate;
   document.getElementById("selected-species").innerHTML = selectedSpecies;
   document.getElementById("decrease-rate").innerHTML = decreaseRate.toFixed(0) + "%";
@@ -136,7 +184,7 @@ tgtOne.addEventListener('click', function(e) {
 })
 
 const tgtTwo = document.getElementById("target-two")
-tgtTwo.addEventListener('click', function(e) {
+tgtTwo.addEventListener('click', function (e) {
 
   selectedArray = testArray[1]
   selectedSpecies = selectedArray.name;
@@ -155,7 +203,7 @@ tgtTwo.addEventListener('click', function(e) {
 
 
 const tgtThree = document.getElementById("target-three")
-tgtThree.addEventListener('click', function(e) {
+tgtThree.addEventListener('click', function (e) {
 
   selectedArray = testArray[2]
 
@@ -195,5 +243,3 @@ document.getElementById("overlay-area").innerHTML = `
   </ul>
 </div>
 `;
-
-
